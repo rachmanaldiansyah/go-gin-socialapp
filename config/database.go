@@ -4,9 +4,10 @@ import (
 	"fmt"
 
 	log "github.com/sirupsen/logrus"
-
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+
+  "go-gin-sosmed/models"
 )
 
 var DB *gorm.DB
@@ -17,6 +18,8 @@ func ConnectDB() {
 	if err != nil {
 		log.Fatal("Failed to connect database...")
 	}
+
+  db.AutoMigrate(&models.User{})
 
 	DB = db
 	log.Info("Database connected...")
