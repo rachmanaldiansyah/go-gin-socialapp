@@ -27,9 +27,9 @@ func (s *authService) Register(req *dto.RegisterRequest) error {
     return &exceptions.BadRequestError{Message: "email already registered"}
   }
 
-  // if req.Password != req.PasswordConfirmation {
-  //   return &exceptions.BadRequestError{Message: "password not match"}
-  // }
+  if req.Password != req.PasswordConfirmation {
+    return &exceptions.BadRequestError{Message: "password not match"}
+  }
 
   passwordHash, err := helpers.HashPassword(req.Password)
   if err != nil {
