@@ -22,6 +22,7 @@ func main() {
   })
 
   routers.AuthRouter(api)
+  routers.PostRouter(api)
 
   r.Run(fmt.Sprintf(":%v", config.ENV.PORT))
 }

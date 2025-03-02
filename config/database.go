@@ -20,6 +20,7 @@ func ConnectDB() {
 	}
 
   db.AutoMigrate(&models.User{})
+  db.AutoMigrate(&models.Post{})
 
 	DB = db
 	log.Info("Database connected...")
