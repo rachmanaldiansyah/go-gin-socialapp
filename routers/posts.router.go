@@ -3,6 +3,7 @@ package routers
 import (
 	"go-gin-sosmed/config"
 	"go-gin-sosmed/handlers"
+	"go-gin-sosmed/middlewares"
 	"go-gin-sosmed/models"
 	"go-gin-sosmed/services"
 
@@ -15,6 +16,8 @@ func PostRouter(api *gin.RouterGroup) {
 	postHandler := handlers.NewPostHandler(postService)
 
 	r := api.Group("/tweets")
+
+	r.Use(middlewares.JWTMiddleware())
 
 	r.POST("/", postHandler.Create)
 }
